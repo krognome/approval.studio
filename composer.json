@@ -1,0 +1,41 @@
+{
+    "name": "krognome/approvalstudio",
+    "description": "REST Client for Approval.Studio API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jacob Edmond Kerr",
+            "email": "jacobcodekerr@gmail.com",
+            "homepage": "https://github.com/krognome/"
+        }
+    ],
+    "homepage": "https://github.com/krognome/approval.studio",
+    "keywords": ["Laravel", "Approvalstudio"],
+    "require": {
+        
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Krognome\\Approvalstudio\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Krognome\\Approvalstudio\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Krognome\\Approvalstudio\\ApprovalstudioServiceProvider"
+            ],
+            "aliases": {
+                "Approvalstudio": "Krognome\\Approvalstudio\\Facades\\Approvalstudio"
+            }
+        }
+    }
+}
