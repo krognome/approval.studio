@@ -12,6 +12,7 @@ class Approvalstudio
     protected $apiURL = "https://api.approval.studio/api/v1/";
     protected $tokenLoginPath = "token/login";
     protected $tokenLifeSeconds = 7200; // The token is valid for a limited amount of time, 120 minutes by default. When expired and still used you will have response HTTP code 401, Unauthorized
+    protected $webhookRoute = "ASWebhook";
     public $username;
     public $password;
 
@@ -38,6 +39,16 @@ class Approvalstudio
                 throw new ApprovalstudioTokenInvalidException();
             }
         }
+    }
+
+    public function getWebhookSecret(){
+        $webhooks = $this->request('webhooks', [], 'get')['result'];
+        if(count($webhooks)<1){
+            $webhooks = $this->request('webhook', ['url'=>url("/".$this->webhookRoute)], 'post')['result'];
+        }else{
+            $webhooks = $webhooks[0];
+        }
+        return $webhooks['secret'];
     }
 
     public function request(string $path, array $data = array(), $method='get', $filePath=''){
